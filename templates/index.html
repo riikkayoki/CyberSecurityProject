@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Website</title>
+  <a href="/"></a>
+<a href="/result"></a>
+  <link rel="stylesheet" href="{{ url_for('static', filename='../static/style.css') }}">
+  <link href="../static/index.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Homepage</a>
+  </nav>
+
+  <div>
+    {% if session.username %}
+    <div align="left">
+        <form action="/result" method="POST">
+            Post your message to the world:
+            <textarea class="form-control form-group input-sm" style="width: 40%" type="text" name="text"></textarea>
+            <input class="btn btn-secondary" type="submit" value="Send">
+        </form>
+    </div>
+    <a href="/logout">Log out</a>
+    {% else %}
+    <form action="/login" method="POST">
+    <p>Username:<br>
+    <input type="text" name="username"></p>
+    <p>Password:<br>
+    <input type="password" name="password"></p>
+    <input type="submit" value="Kirjaudu">
+    </form>
+    <div>
+        <span>Don't have an account yet?</span>
+        <a href="/signup">Register here!</a>
+    </div>
+    {% endif %}
+    <div>
+
+</body>
+
+{% block content %}{% endblock %}

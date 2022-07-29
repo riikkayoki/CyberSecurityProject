@@ -1,0 +1,39 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+<div>
+    Hi {username}!
+
+    <div> Your email is <b> {{email}}</b>
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-email">MODIFY IT HERE!</button>
+        <form action="/profile/modify-email" method="POST">
+            <div class="modal" id="myModal-email">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modify Email</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label required">New Email</label>
+                                <input type="email" class="form-control" id="new_email", name="new_email">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+    </div>
+
+    <div class="text-layout"><a href="/logout">Log out</a></div>
+</div>
+</div>
+
+
+{% endblock
