@@ -1,5 +1,12 @@
 # CyberSecurityProject
 
+This is a repository for MOOC's [Cyber Security Base Project 1](https://cybersecuritybase.mooc.fi/module-3.1)
+
+
+##### Disclaimer:
+This application is vulnerable and should not be reused.
+
+
 ## Installation
 ### Requirements
 * python3
@@ -14,7 +21,11 @@
 ### Usage
 * To start the program enter flask run on terminal in the project file.
 
-## A1:2017-Injection
+## Vulnerabilities in the application
+
+This web application contains five different [OWASP Top Ten 2017](https://owasp.org/www-project-top-ten/) Vulnerabilities
+
+### A1:2017-Injection
 
 Source: https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/routes.py#L82
 
@@ -32,7 +43,7 @@ sql = "UPDATE Users SET email=:email WHERE id=:user_id"
 db.session.execute(sql, {"email":email, "user_id":user_id})
 
 
-## A2:2017-Broken Authentication
+### A2:2017-Broken Authentication
 
 Source: https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/routes.py#L27
 
@@ -44,7 +55,7 @@ The app does not require users for strong passwords or repeat the password again
 
 The issue can be implemented by implementing weak-password checks and requiring users to enter a secure password while registering. 
 
-## A3:2017-Sensitive Data Exposure
+### A3:2017-Sensitive Data Exposure
 
 Source: https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/routes.py#L48
 
@@ -59,7 +70,8 @@ def logout_page():
     username = user_service.get_current_username(user_id)
 
 2. Remove {{session.user_id}} from layout.html in the logout links
-## A5:2017-Broken Access Control (CSRF)
+   
+### A5:2017-Broken Access Control (CSRF)
 
 Source: https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/routes.py#L83 & https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/templates/profile.html#L12
 
@@ -73,7 +85,7 @@ A CSRF vulnerability occurs when a web application does not verify that a page r
 
 2. Remove hashtag from file users.py from lines 21 and 76-78.
 
-## A7:2017-Cross-Site Scripting (XSS)
+### A7:2017-Cross-Site Scripting (XSS)
 
 Source: https://github.com/riikkayoki/CyberSecurityProject/blob/d5915bd02fb48babbca7d2060a12450179c91b1c/routes.py#L47
 
