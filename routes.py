@@ -56,15 +56,17 @@ def logout_page(user_id):
                     <title>Website</title>
                     <a href="/"></a>
                     <a href="/login"></a>
-                    <a href="/profile/{user_id}"></a>
+                    <a href="/profile"></a>
                     <a href="/result"></a>
                     <link href="../static/index.css" rel="stylesheet">
                     </head>
                     <body>
                         <nav class="navbar navbar-dark bg-dark">
-                            <a class="navbar-brand" href="/">Homepage</a>
-                            <a class="nav-item" href="/profile/{user_id}">Profile</a>
-                        </nav>
+                            <div class="navbar-content" align="left">
+                                <a class="navbar-brand" href="/">Homepage</a>
+                                <a class="navbar-brand" href="/profile">Profile</a>
+                                </div>
+                            </nav>
                         <p></p>
                         <h3>Hi <b>{username}</b>!</h3>
                         It is sad to see you leaving...

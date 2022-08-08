@@ -18,7 +18,7 @@ class User:
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
             session["username"] = user.username
-            session["csrf_token"] = secrets.token_hex(16)
+            #session["csrf_token"] = secrets.token_hex(16)
             return True
         return False
 

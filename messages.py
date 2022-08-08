@@ -10,8 +10,7 @@ class Messages:
                     VALUES (:message)'''
         self._db.session.execute(sql, {"message":message})
         self._db.session.commit()
-           
-
+    
     def get_all_messages(self):
         sql = '''SELECT * FROM Messages'''
         return self._db.session.execute(sql).fetchall()
