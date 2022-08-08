@@ -49,6 +49,7 @@ def result():
 @app.route("/logout/<int:user_id>", methods=["GET", "POST"])
 def logout_page(user_id):
     username = user_service.get_current_username(user_id)
+    email = user_service.get_current_email(user_id)
     template = f'''<!DOCTYPE html>
                     <head>
                     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -68,7 +69,8 @@ def logout_page(user_id):
                                 </div>
                             </nav>
                         <p></p>
-                        <h3>Hi <b>{username}</b>!</h3>
+                        <h3>Hi <b>{username} with email {email}</b>!</h3>
+
                         It is sad to see you leaving...
                         log out by clicking <a href="/logout">this!</a>
                     </body>
