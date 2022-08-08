@@ -24,22 +24,25 @@ class User:
 
     def register_user(self, username, password, email):
         hash_value = generate_password_hash(password)
-        values_to_db = {"username":username,
-                        "password":hash_value,
-                        "email": email}
+        try:
+            values_to_db = {"username":username,
+                            "password":hash_value,
+                            "email": email}
 
-        if not self.check_if_username_exists(username):
-            sql = """INSERT INTO Users (username,
-                                        password,
-                                        email)
-                        VALUES (:username,
-                                :password,
-                                :email)"""
-            self._db.session.execute(sql, values_to_db)
-            self._db.session.commit()
-            self.login.user(username, password)
-            return True
-        return False
+            if not self.check_if_username_exists(username):
+                sql = """INSERT INTO Users (username,
+                                            password,
+                                            email)
+                            VALUES (:username,
+                                    :password,
+                                    :email)"""
+                self._db.session.execute(sql, values_to_db)
+                self._db.session.commit()
+                self.login(username, password)
+                return True
+        except:
+            return False
+
 
     def check_if_username_exists(self, username):
         sql = """SELECT username
@@ -48,25 +51,33 @@ class User:
         return bool(self._db.session.execute(sql,
                         {"username":username}).fetchall())
 
+    def get_current_email(self, id):
+        sql = '''SELECT email
+                FROM Users
+                WHERE id=:id'''
+        return self._db.session.execute(sql, {"id":id}).fetchone()[0]
+
+    def get_current_username(self, id):
+        sql = '''SELECT username
+                FROM Users
+                WHERE id=:id'''
+        return self._db.session.execute(sql, {"id":id}).fetchone()[0]
+
+
     def modify_user_email(self, sql):
-        try:
-            self._db.session.execute(sql)
-            self._db.session.commit()
-            return True
-        except:
-            return False
+        self._db.session.execute(sql)
+        self._db.session.commit()
 
     def logout(self):
         del session["user_id"]
         del session["username"]
         del session['csrf_token']
 
-    def check_csrf(self):
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+    #def check_csrf(self):
+        #if session["csrf_token"] != request.form["csrf_token"]:
+            #abort(403)
 
     def get_user_id(self):
         return session.get("user_id", 0)
 
-
-user_repository = User()
+user_service = User()

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Login</h2>
+
+<form action="/login" method="POST">
+Username: <br><input type="text" name="username">
+<p>
+Password: <br><input type="password" name="password">
+<p>
+<input type="submit" value="login">
+</form>
+<div>
+    <span>Don't have an account yet?</span>
+    <a href="/register">Register here!</a>
+</div>
+<p>
+
+{% endblock %}
