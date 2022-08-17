@@ -18,7 +18,7 @@ This application is vulnerable and should not be reused.
     DATABASE_URL=postgresql:///[your username]
     SECRET_KEY=[your secret key]
 ### Usage
-* To start the program enter flask run on terminal in the project file.
+* To start the program enter flask run on terminal in the project file. Also, remember to have postgresql on in different terminal!
 
 ## Vulnerabilities in the application
 
